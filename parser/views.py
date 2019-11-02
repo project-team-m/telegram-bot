@@ -52,6 +52,11 @@ def insert_subject(name, id_site):
 def insert_rating(id_student, id_subject):
     pass
 
+def take_rating(student ,lines):
+    return tuple(take_results(
+                       lines[lines.find('ctl00_MainContent_ucVedBox_TableVed_DXDataRow{}'.format(find_position_in_site(str(student), lines) - 1))::].split('">')[2:16]
+                      ))
+
 def take_results(string):
     mass = []
     for i in string:
@@ -62,6 +67,17 @@ def take_results(string):
             mass.append(znach)
     return mass
 
+def create_message(arg, mass, subject_name):
+    res = []
+    for i in range(len(arg)):
+        if mass[i] != '':
+            res.append('{} {}'.format(arg[i], mass[i]))
+
+    message = subject_name
+    for i in res:
+        message = '{}\n{}'.format(message, i)
+
+    return res
 
 def find_position_in_site(id_book, lines):
     try:
