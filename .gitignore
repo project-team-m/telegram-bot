@@ -1,2 +1,5 @@
 .idea/
 old/
+venv/
+parser/
+echo/config.py
