@@ -21,9 +21,8 @@ def do_echo(bot: Bot, update: Update):
     text = update.message.text
     bot.send_message(
         chat_id=update.message.chat_id,
-        text=text,
+        text=update.message.chat_id,
     )
-
 
 def main():
     bot = Bot(
@@ -34,6 +33,7 @@ def main():
         bot=bot,
     )
 
+    bot.send_message(-1001422975374, text='Саня хуй соси')
     start_handler = CommandHandler("start", do_start)
     message_handler = MessageHandler(Filters.text, do_echo)
 
