@@ -1,5 +1,5 @@
 from parser.views import *
-import transliterate
+
 from datetime import datetime
 from time import sleep
 
