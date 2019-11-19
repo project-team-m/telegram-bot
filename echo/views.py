@@ -7,6 +7,6 @@ def send_message_chat(message):
         base_url=TG_API_URL
     )
     bot.send_message(
-        chat_id=-1001422975374,
+        chat_id=-230220852,
         text=message
     )

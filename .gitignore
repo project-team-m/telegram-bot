@@ -1,5 +1,6 @@
 .idea/
 old/
 venv/
-parser/
+db/config.py
+.gitignore
 echo/config.py
