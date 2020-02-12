@@ -65,9 +65,9 @@ class DB:
         self.create_students()
         self.create_subjects()
         self.create_ved()
-        '''for i in students_template:
+        for i in students_template:
             self.insert_student(i[0], i[1])
-        self.insert_subjects()'''
+        self.insert_subjects()
 
     def insert_student(self, n_zach, name):
         with self.mydb.cursor() as cursor:
@@ -188,4 +188,4 @@ class DB:
 if __name__ == '__main__':
     a = DB()
 
-    print(a.take_subjects_args('687893'))
+    a.create_db()

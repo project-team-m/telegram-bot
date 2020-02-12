@@ -68,3 +68,7 @@ def get_ved(group = 32340):
                      get_type_ved(str(i.find_all('td')[0].find_all('a')[0]).split('=')[-1].split('"')[0])))
 
     return mass
+
+if __name__ == '__main__':
+    for i in get_ved():
+        print(i)

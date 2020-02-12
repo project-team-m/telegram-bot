@@ -24,24 +24,33 @@ while True:
 
             r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent})
 
-            soup = BeautifulSoup(r.text, 'html.parser')
+            if r.status_code == 200:
+                soup = BeautifulSoup(r.text, 'html.parser')
 
-            for j in students:
-                rating_old = DB.take_rating(j, i)
-                rating_new = get_rating(soup, j)
+                for j in students:
+                    rating_old = DB.take_rating(j, i)
+                    rating_new = get_rating(soup, j)
 
-                if rating_new != rating_old[:len(rating_new)]:
-                    DB.update_student_rating(j, i, rating_new)
-                    subject_name = DB.take_subject_name(i)
-                    message = create_message(rating_new, subject_name, DB.take_name(j), DB.take_subjects_args(i))
-                    if message:
-                        send_message_chat(message)
-                    print(transliterate.translit(subject_name, reversed=True),
-                          j, datetime.today().strftime("%Y-%m-%d %H.%M.%S")
-                          )
+                    if rating_new != rating_old[:len(rating_new)] and len(rating_new) > 2:
+                        DB.update_student_rating(j, i, rating_new)
+                        subject_name = DB.take_subject_name(i)
+                        message = create_message(rating_new, subject_name, DB.take_name(j), DB.take_subjects_args(i))
+                        if message:
+                            send_message_chat(message)
+                        print(transliterate.translit(subject_name, reversed=True),
+                              j, datetime.today().strftime("%Y-%m-%d %H.%M.%S")
+                              )
 
         sleep(10)
 
-    except:
-        print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"))
+    except requests.exceptions.HTTPError:
+        print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"), 'HTTPError')
+        sleep(120)
+
+    except requests.exceptions.ConnectionError:
+        print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"), 'ConnectionError')
+        sleep(120)
+
+    except requests.exceptions.Timeout:
+        print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"), 'Timeout')
         sleep(120)
