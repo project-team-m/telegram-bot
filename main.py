@@ -44,7 +44,7 @@ while True:
                                   j, datetime.today().strftime("%Y-%m-%d %H.%M.%S")
                                   )
                 except:
-                    print('BD drop')
+                    print('BD drop', datetime.today().strftime("%Y-%m-%d %H.%M.%S"))
                     DB = DB()
 
         sleep(10)
