@@ -6,12 +6,15 @@ from db.config import *
 
 
 class DB:
-    def __init__(self):
+    def connect(self):
         self.mydb = pymysql.connect(
             host=host,
             user=user,
             password=password,
             db=db)
+
+    def close(self):
+        self.mydb.close()
 
     def create_students(self):
         with self.mydb.cursor() as cursor:
