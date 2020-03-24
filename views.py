@@ -1,5 +1,5 @@
 from telegram import Bot
-from echo.config import TG_TOKEN, TG_API_URL
+from config import TG_TOKEN, TG_API_URL
 
 def send_message_chat(message):
     bot = Bot(

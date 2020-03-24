@@ -1,8 +1,7 @@
 import pymysql.cursors
 
-
-from parser.views import get_ved
-from db.config import *
+from parser_dgtu import *
+from config import *
 
 
 class DB:
@@ -190,5 +189,6 @@ class DB:
 
 if __name__ == '__main__':
     a = DB()
-
+    a.connect()
     a.create_db()
+    a.close()

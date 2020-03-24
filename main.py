@@ -1,9 +1,8 @@
-from parser.views import *
-
 from datetime import datetime
 from time import sleep
-from db.views import DB
-from echo.views import send_message_chat
+from models import DB
+from views import *
+from parser_dgtu import *
 
 s = {
     'Анализ и кодирование информации': '687891',
