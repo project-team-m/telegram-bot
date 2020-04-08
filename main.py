@@ -20,14 +20,17 @@ while True:
         DB.connect()
         subjects = DB.take_subjects()
         students = DB.take_students()
+        logs = 0
 
         for i in subjects:
+            logs += 1
             url = 'https://edu.donstu.ru/Ved/Ved.aspx'
 
             r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent})
 
             if r.status_code == 200:
-                log.write_log('Connect site')
+                if logs % 100 == 0:
+                    log.write_log('Connect site')
                 soup = BeautifulSoup(r.text, 'html.parser')
 
                 for j in students:
