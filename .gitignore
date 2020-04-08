@@ -1,6 +1,9 @@
 .idea/
 old/
 venv/
+__pycache__/
 config.py
-.gitignore
 echo/config.py
+log/Errorlog.txt
+log/log.txt
+log/Actionlog.txt
