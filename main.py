@@ -43,7 +43,7 @@ while True:
                         message = create_message(rating_new, subject_name, DB.take_name(j),
                                                  DB.take_subjects_args(i))
 
-                        log.write_actions_log('Send {}: {}'.format(subject_name, DB.take_name(j)))
+                        log.write_actions_log('Send {}: {}, '.format(subject_name, DB.take_name(j), rating_new))
                         if message:
                             send_message_chat(message)
                         print(transliterate.translit(subject_name, reversed=True),

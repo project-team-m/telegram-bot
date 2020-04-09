@@ -7,3 +7,4 @@ echo/config.py
 log/Errorlog.txt
 log/log.txt
 log/Actionlog.txt
+test.py

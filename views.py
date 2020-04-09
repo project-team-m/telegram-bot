@@ -1,12 +1,13 @@
-from telegram import Bot
-from config import TG_TOKEN, TG_API_URL
+import telebot
+from telebot import apihelper
+from config import TG_TOKEN, proxy
+from time import sleep
+apihelper.proxy = {'https': proxy}
 
 def send_message_chat(message):
-    bot = Bot(
-        token=TG_TOKEN,
-        base_url=TG_API_URL
-    )
-    bot.send_message(
-        chat_id=-230220852,
-        text=message
-    )
+    try:
+        bot = telebot.TeleBot(TG_TOKEN)
+        bot.send_message(-230220852, message)
+    except:
+        sleep(1)
+        send_message_chat(message)
