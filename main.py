@@ -14,7 +14,7 @@ s = {
 user_agent = ('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) '
               'Gecko/20100101 Firefox/50.0')
 DB = DB()
-log = Log('Telegram')
+log = Log()
 logs = 0
 while True:
     try:
