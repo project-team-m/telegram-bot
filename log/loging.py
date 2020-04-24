@@ -3,10 +3,10 @@ from os import system
 
 
 class Log:
-    def __init__(self, project):
+    def __init__(self):
         self.log = 'log/log.txt'
-        self.action_log = 'log/Actionlog.txt'.format(project)
-        self.error_log = 'log/Errorlog.txt'.format(project)
+        self.action_log = 'log/Actionlog.txt'
+        self.error_log = 'log/Errorlog.txt'
 
 
 
