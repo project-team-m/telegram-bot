@@ -26,7 +26,7 @@ while True:
             logs += 1
             url = 'https://edu.donstu.ru/Ved/Ved.aspx'
 
-            r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent})
+            r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent}, proxies=proxies)
 
             if r.status_code == 200:
                 if logs % 100 == 0:
@@ -43,9 +43,9 @@ while True:
                         message = create_message(rating_new, subject_name, DB.take_name(j),
                                                  DB.take_subjects_args(i))
 
-                        log.write_actions_log('Send {}: {}, '.format(subject_name, DB.take_name(j), rating_new))
-                        if message:
-                            send_message_chat(message)
+                        log.write_actions_log('Send {}: {}, {}'.format(subject_name, DB.take_name(j), rating_new))
+                        #if message:
+                            #send_message_chat(message)
                         print(transliterate.translit(subject_name, reversed=True),
                               j,
                               datetime.today().strftime("%Y-%m-%d %H.%M.%S")
