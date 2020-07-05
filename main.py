@@ -26,7 +26,7 @@ while True:
             logs += 1
             url = 'https://edu.donstu.ru/Ved/Ved.aspx'
 
-            r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent}, proxies=proxies)
+            r = requests.get(url, params={'id': i}, headers={'User-Agent': user_agent},)
 
             if r.status_code == 200:
                 if logs % 100 == 0:
@@ -36,6 +36,10 @@ while True:
                 for j in students:
                     rating_old = DB.take_rating(j, i)
                     rating_new = get_rating(soup, j)
+                    if len(rating_new) > 15:
+                        rating_new = rating_new[:15]
+                    if len(rating_new) <= 5:
+                        rating_new = rating_new[:3]
 
                     if rating_new != rating_old[:len(rating_new)] and len(rating_new) > 2:
                         DB.update_student_rating(j, i, rating_new)
@@ -70,7 +74,7 @@ while True:
         print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"), 'Timeout')
         sleep(120)
 
-    except:
+    '''except :
         log.write_error_log('Wtf what is it')
         print('Error at', datetime.today().strftime("%Y-%m-%d %H.%M.%S"), 'Timeout')
-        sleep(120)
+        sleep(120)'''

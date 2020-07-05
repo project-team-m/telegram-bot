@@ -109,7 +109,6 @@ class DB:
                 for student in students:
                     cursor.execute(sql, (student, subject,))
 
-
             self.mydb.commit()
 
     def change_normal(self, obj):
@@ -155,7 +154,7 @@ class DB:
                  id_subject = (SELECT id FROM subjects WHERE id_site = %s);'''
             else:
                 sql = '''UPDATE ved
-                                SET col1 = %s, col2 = %s, col3 = %s, col4 = %s, col5 = %s
+                                SET col1 = %s, col2 = %s, col3 = %s
                                  WHERE id_student = (SELECT id FROM students WHERE n_zach = %s) AND
                                  id_subject = (SELECT id FROM subjects WHERE id_site = %s);'''
 
@@ -186,6 +185,7 @@ class DB:
             cursor.execute(sql, subject)
 
             return cursor.fetchone()[0].split('$')
+
 
 if __name__ == '__main__':
     a = DB()

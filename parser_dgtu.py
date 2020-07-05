@@ -43,8 +43,8 @@ def get_type_ved(id):
     r = requests.get(url, params={'id': id}, headers={'User-Agent': user_agent})
 
     soup = BeautifulSoup(r.text, 'html.parser')
-    if len(get_rating(soup, '1795989')) == 5:
-        return 'Дата сдачи$Оценка в баллах$Оценка$Тема курсовой работы$Результат'
+    if len(get_rating(soup, '1795989')) <= 5:
+        return 'Дата сдачи$Оценка в баллах$Оценка'
     else:
         return 'Лек 1$Пр 1$Лаб 1$Пропуски 1$Итог 1$Лек 2$Пр 2$Лаб 2$Пропуски 2$Итог 2$Экзамен$Всего$Оценка$Итоговая оценка$Результат'
 
